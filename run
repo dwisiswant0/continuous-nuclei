@@ -1,0 +1,17 @@
+#!/bin/bash
+
+TPL="/path/to/git/nuclei-templates"
+DIR="${BASH_SOURCE%/*}"
+
+. "${DIR}/functions.sh"
+
+parseArgs "$@"
+
+cd "${TPL}"
+isUpdated
+CUR=$(getHead)
+git pull upstream master &>/dev/null
+NOW=$(getHead)
+CHG=$(getChanges "${CUR}..${NOW}")
+
+nuclei ${1} ${2} $(echo "${CHG}" | sed "s/^/-t /" | tr "\n" " ")
