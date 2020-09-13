@@ -10,7 +10,7 @@ parseArgs "$@"
 cd "${TPL}"
 isUpdated
 CUR=$(getHead)
-git pull upstream master &>/dev/null
+git pull origin master &>/dev/null
 NOW=$(getHead)
 CHG=$(getChanges "${CUR}..${NOW}")
 
