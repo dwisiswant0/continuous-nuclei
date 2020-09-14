@@ -21,6 +21,6 @@ function isUpdated() {
 }
 
 function getChanges() {
-	local CHANGES=$(git diff ${1} --name-only | grep -v ".(git|md|pre-commit-config|nuclei-ignore)")
+	local CHANGES=$(git diff ${1} --name-only | grep -v ".(git|md|pre-commit-config|nuclei-ignore)" | tee $(echo ${1} | sed "s/\.\./-/").txt)
 	echo "${CHANGES}"
 }
