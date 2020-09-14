@@ -14,4 +14,4 @@ git pull origin master &>/dev/null
 NOW=$(getHead)
 CHG=$(getChanges "${CUR}..${NOW}")
 
-nuclei ${1} ${2} $(echo "${CHG}" | sed "s/^/-t /" | tr "\n" " ")
+nuclei ${1} ${2} $(echo "${CHG}" | sed "s/^/-t /" | tr "\n" " ") -o "${DIR}/$(basename "${2}" .txt)_nuclei-continuous-results.txt"
